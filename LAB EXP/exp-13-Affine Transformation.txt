@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+
+img = cv2.imread("r.jpg")
+h, w = img.shape[:2]
+
+p1 = np.float32([[0, 0], [w-1, 0], [0, h-1]])
+p2 = np.float32([[0, h*0.2], [w*0.9, 0], [w*0.2, h*0.9]])
+
+matrix = cv2.getAffineTransform(p1, p2)
+result = cv2.warpAffine(img, matrix, (w, h))
+
+cv2.imshow("Affine Transformation", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
