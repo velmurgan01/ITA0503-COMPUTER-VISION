@@ -1,0 +1,16 @@
+import cv2
+
+img = cv2.imread("r.jpg")
+h, w = img.shape[:2]
+
+roi = img[0:h//2, 0:w//2].copy()
+
+result = img.copy()
+result[h//2:h, w//2:w] = cv2.resize(
+    roi, (w-w//2, h-h//2)
+)
+
+cv2.imshow("Cropped", roi)
+cv2.imshow("Pasted", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
